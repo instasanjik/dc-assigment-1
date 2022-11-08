@@ -36,7 +36,7 @@ public class Processor {
         System.out.println("Got request:");
         String newrequest = request.toString().split(" ")[1];
         System.out.println(newrequest);
-
+        Integer threadId = 0;
         if (newrequest.contains("stress-test/")) {
             PrintWriter output = new PrintWriter(socket.getOutputStream());
 
@@ -77,7 +77,9 @@ public class Processor {
             output.flush();
             // We are returning a simple web page now.
             output.println();
-            Thread thread = new FixThread(output);
+            Thread thread = new Worker(threadId);
+            threadId++;
+            thread.run();
             thread.start();
         }
         else if (newrequest.contains("create/")) {
@@ -99,7 +101,7 @@ public class Processor {
                     output.println();
                     output.println("<html>");
                     output.println("<head><title>Test</title></head>");
-                    output.println("<body><p>Test file created, 200 OK </p></body>");
+                    output.println("<body><p>Test file created, 204 OK </p></body>");
                     output.println("</html>");
                     output.flush();
                     // We are returning a simple web page now.
