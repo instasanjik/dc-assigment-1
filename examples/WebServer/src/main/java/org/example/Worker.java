@@ -23,6 +23,5 @@ public class FixThread extends Thread{
         System.out.println("thread has been started");
         this.test();
         printWriterOutput.println("<h1>Success</h1>");
-
     }
 }
