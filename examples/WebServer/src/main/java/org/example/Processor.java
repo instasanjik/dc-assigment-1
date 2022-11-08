@@ -77,10 +77,6 @@ public class Processor {
             output.flush();
             // We are returning a simple web page now.
             output.println();
-            Thread thread = new Worker(threadId);
-            threadId++;
-            thread.run();
-            thread.start();
         }
         else if (newrequest.contains("create/")) {
             try {
